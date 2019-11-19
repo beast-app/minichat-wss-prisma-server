@@ -1,0 +1,22 @@
+type Message {
+  id: ID! @id
+  body: String!
+  postedBy: User! @relation(name: "UserMessages", link: INLINE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type ProfilePicture {
+  id: ID! @id
+  user: User! @relation(name: "ProfilePicture")
+  src: String!
+}
+
+type User {
+  id: ID! @id
+  email: String! @unique
+  password: String!
+  username: String!
+  profilePicture: ProfilePicture @relation(name: "ProfilePicture", link: INLINE)
+  messages: [Message]! @relation(name: "UserMessages")
+}

@@ -1,0 +1,52 @@
+# Scalars
+scalar DateTime
+
+# Root Types
+type Query {
+  messages: [Message!]!
+}
+
+type Mutation {
+  signup(email: String!, password: String!, username: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+  createMessage(body: String!): Message!
+  # editMessage(id: ID!, body: String!): Message!
+}
+
+type Subscription {
+  newMessage: Message
+  # newProfilePicture: ProfilePicture
+}
+
+# Root Fields
+# type Conversation {
+#   id: ID!
+#   messages: [Message!]!
+# }
+
+type Message {
+  id: ID!
+  # conversation: Conversation!
+  body: String!
+  postedBy: User!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type ProfilePicture {
+  id: ID!
+  user: User!
+  src: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+  username: String!
+  profilePicture: ProfilePicture
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
