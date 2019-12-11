@@ -22,6 +22,8 @@ type Subscription {
 # type Conversation {
 #   id: ID!
 #   messages: [Message!]!
+#   users: [User!]
+#   type: ConversationType
 # }
 
 type Message {
